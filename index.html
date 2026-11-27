@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BioScan AI — Asisten Interaktif Pembelajaran Biologi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">🧬</div>
+        <div><strong>BioScan AI</strong><small>Biologi Interaktif</small></div>
+      </div>
+      <nav id="mainNav">
+        <button class="nav-item active" data-page="home">🏠 <span>Beranda</span></button>
+        <button class="nav-item" data-page="scanner">🔬 <span>BioScanner</span></button>
+        <button class="nav-item" data-page="bioai">🤖 <span>Tanya BioAI</span></button>
+        <button class="nav-item" data-page="quiz">🧠 <span>Kuis Visual HOTS</span></button>
+        <button class="nav-item" data-page="dashboard">📊 <span>Dashboard</span></button>
+        <button class="nav-item" data-page="gallery">🧫 <span>Galeri Sel</span></button>
+      </nav>
+      <div class="sidebar-footer">
+        <span class="status-dot"></span> Prototype v0.8
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">SMAN 8 BULUKUMBA • BIOLOGI</div>
+          <h1 id="pageTitle">BioScan AI</h1>
+        </div>
+        <div class="student-box">
+          <label for="studentName">Nama siswa</label>
+          <input id="studentName" placeholder="Isi nama siswa..." maxlength="30">
+        </div>
+      </header>
+
+      <section id="page-home" class="page active">
+        <div class="hero">
+          <div>
+            <span class="pill">KODING + KECERDASAN ARTIFISIAL</span>
+            <h2>Asisten interaktif untuk <span>menjelajahi sel</span>.</h2>
+            <p>Prototype BioScan AI menghadirkan pemindaian citra, chatbot pembelajaran, kuis visual, rekap capaian, dan galeri preparat sel dalam satu ruang belajar.</p>
+            <button class="primary" data-go="scanner">Mulai BioScanner →</button>
+          </div>
+          <div class="cell-art" aria-label="ilustrasi sel">
+            <div class="cell nucleus"><span>Inti</span></div>
+            <div class="organel o1">M</div><div class="organel o2">C</div>
+            <div class="organel o3">V</div><div class="organel o4">D</div>
+          </div>
+        </div>
+        <div class="stat-grid">
+          <div class="stat"><b>5</b><span>Organel terdeteksi</span></div>
+          <div class="stat"><b>10</b><span>Soal HOTS visual</span></div>
+          <div class="stat"><b>85%</b><span>Progres Tanya BioAI</span></div>
+          <div class="stat"><b>v0.8</b><span>Advanced Prototype</span></div>
+        </div>
+        <div class="section-head"><div><h3>Komponen karya</h3><p>Selaras dengan rancangan pada LK-3.</p></div></div>
+        <div class="feature-grid">
+          <article class="feature-card"><div class="feature-icon">🔬</div><h3>BioScanner</h3><p>Simulasi klasifikasi citra 5 organel: mitokondria, kloroplas, inti sel, dinding sel, vakuola.</p><button data-go="scanner">Buka →</button></article>
+          <article class="feature-card"><div class="feature-icon">🤖</div><h3>Tanya BioAI</h3><p>Chatbot biologis dengan respons terarah pada materi Biologi SMA.</p><button data-go="bioai">Bertanya →</button></article>
+          <article class="feature-card"><div class="feature-icon">🧠</div><h3>Kuis Visual</h3><p>Latihan HOTS dengan skor otomatis dan umpan balik.</p><button data-go="quiz">Mulai kuis →</button></article>
+          <article class="feature-card"><div class="feature-icon">📊</div><h3>Dashboard</h3><p>Ringkasan hasil belajar dan indikator capaian siswa.</p><button data-go="dashboard">Lihat →</button></article>
+        </div>
+      </section>
+
+      <section id="page-scanner" class="page">
+        <div class="section-head"><div><span class="pill">AI VISION SIMULATION</span><h2>BioScanner</h2><p>Unggah foto preparat untuk simulasi klasifikasi organel.</p></div></div>
+        <div class="scanner-layout">
+          <div class="scan-card">
+            <div id="dropZone" class="drop-zone">
+              <div class="upload-icon">📷</div>
+              <h3>Masukkan citra preparat</h3>
+              <p>JPG, PNG atau WEBP • simulasi lokal tanpa server</p>
+              <input type="file" id="imageInput" accept="image/*" hidden>
+              <button class="primary" id="chooseImage">Pilih Gambar</button>
+              <img id="preview" alt="Pratinjau citra" hidden>
+            </div>
+            <div class="tips"><b>Tips fotografi:</b> pastikan preparat fokus, pencahayaan cukup, dan objek berada di tengah citra.</div>
+          </div>
+          <div class="result-card">
+            <div class="result-head"><h3>Hasil Analisis</h3><span id="scanBadge" class="badge">Menunggu citra</span></div>
+            <div id="scanResult" class="empty-result">Belum ada analisis. Pilih citra lalu tekan <b>Analisis Citra</b>.</div>
+            <button id="analyzeBtn" class="primary full" disabled>🔎 Analisis Citra</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="page-bioai" class="page">
+        <div class="section-head"><div><span class="pill">LLM LEARNING ASSISTANT</span><h2>Tanya BioAI</h2><p>Tanyakan konsep Biologi dan dapatkan penjelasan bertahap.</p></div></div>
+        <div class="chat-window">
+          <div id="chatMessages" class="messages">
+            <div class="msg ai"><b>BioAI</b><p>Halo! Saya BioAI. Tanyakan misalnya: “Apa fungsi mitokondria?” atau “Mengapa sel tumbuhan memiliki kloroplas?”</p></div>
+          </div>
+          <div class="suggestions">
+            <button data-q="Apa fungsi mitokondria?">Fungsi mitokondria</button>
+            <button data-q="Mengapa kloroplas penting bagi tumbuhan?">Kloroplas</button>
+            <button data-q="Apa perbedaan sel tumbuhan dan sel hewan?">Perbedaan sel</button>
+          </div>
+          <form id="chatForm" class="chat-input">
+            <input id="chatInput" placeholder="Tulis pertanyaan Biologi..." autocomplete="off">
+            <button class="primary">Kirim</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="page-quiz" class="page">
+        <div class="section-head"><div><span class="pill">ASESMEN DIAGNOSTIK</span><h2>Kuis Visual HOTS</h2><p>10 soal disiapkan dalam rancangan. Prototype ini menampilkan 5 soal inti untuk demonstrasi.</p></div><div class="quiz-score">Skor <strong id="score">0</strong></div></div>
+        <div id="quizContainer"></div>
+      </section>
+
+      <section id="page-dashboard" class="page">
+        <div class="section-head"><div><span class="pill">REKAPITULASI KKTP</span><h2>Dashboard Hasil Murid</h2><p>Ringkasan performa sesi belajar saat ini.</p></div></div>
+        <div class="dashboard-grid">
+          <div class="progress-card"><span>BioScanner</span><strong>90%</strong><div class="bar"><i style="width:90%"></i></div></div>
+          <div class="progress-card"><span>Tanya BioAI</span><strong>85%</strong><div class="bar"><i style="width:85%"></i></div></div>
+          <div class="progress-card"><span>Kuis Visual</span><strong id="quizPercent">0%</strong><div class="bar"><i id="quizBar" style="width:0%"></i></div></div>
+          <div class="progress-card"><span>Galeri Sel</span><strong>90%</strong><div class="bar"><i style="width:90%"></i></div></div>
+        </div>
+        <div class="dashboard-panel">
+          <h3>Indikator pembelajaran</h3>
+          <div class="indicator"><span>Mengidentifikasi organel sel</span><b>✓</b></div>
+          <div class="indicator"><span>Menjelaskan fungsi organel</span><b>✓</b></div>
+          <div class="indicator"><span>Menganalisis citra/visual sel</span><b id="dashScan">○</b></div>
+          <div class="indicator"><span>Menggunakan bukti untuk menjawab masalah</span><b id="dashQuiz">○</b></div>
+        </div>
+        <button class="primary" id="resetProgress">Reset progres sesi</button>
+      </section>
+
+      <section id="page-gallery" class="page">
+        <div class="section-head"><div><span class="pill">DIGITAL CELL GALLERY</span><h2>Galeri Preparat Sel Digital</h2><p>Koleksi visual untuk menghubungkan bentuk, struktur, dan fungsi.</p></div></div>
+        <div class="gallery-grid">
+          <article class="gallery-card plant"><div class="fake-micro"><span>🌿</span></div><h3>Sel Tumbuhan</h3><p>Dinding sel • kloroplas • vakuola • inti sel</p></article>
+          <article class="gallery-card animal"><div class="fake-micro"><span>🧬</span></div><h3>Sel Hewan</h3><p>Membran sel • sitoplasma • inti • mitokondria</p></article>
+          <article class="gallery-card mito"><div class="fake-micro"><span>⚡</span></div><h3>Mitokondria</h3><p>Organel penghasil ATP melalui respirasi seluler.</p></article>
+          <article class="gallery-card chloro"><div class="fake-micro"><span>☀️</span></div><h3>Kloroplas</h3><p>Tempat berlangsungnya fotosintesis pada sel tumbuhan.</p></article>
+        </div>
+      </section>
+
+      <footer>BioScan AI • Prototype v0.8 • SMAN 8 Bulukumba • 2026</footer>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
